@@ -77,7 +77,7 @@ AudioRecorder::AudioRecorder()
     connect(m_probe, &QAudioProbe::audioBufferProbed,
             this, &AudioRecorder::processBuffer);
     m_probe->setSource(m_audioRecorder);
-
+/*
     //audio devices
     ui->audioDeviceBox->addItem(tr("Default"), QVariant(QString()));
     for (auto &device: m_audioRecorder->audioInputs()) {
@@ -90,13 +90,13 @@ AudioRecorder::AudioRecorder()
         ui->audioCodecBox->addItem(codecName, QVariant(codecName));
     }
 
+*/
 
 
 
 
 
-
-
+/*
     //containers
     ui->containerBox->addItem(tr("Default"), QVariant(QString()));
     for (auto &containerName: m_audioRecorder->supportedContainers()) {
@@ -130,6 +130,8 @@ AudioRecorder::AudioRecorder()
     ui->bitrateBox->addItem(QStringLiteral("64000"), QVariant(64000));
     ui->bitrateBox->addItem(QStringLiteral("96000"), QVariant(96000));
     ui->bitrateBox->addItem(QStringLiteral("128000"), QVariant(128000));
+
+    */
 #if environment+_is_sane
     connect(m_audioRecorder->centralwidget->playitbutton,SIGNAL(cliecked()),
             this,SLOT(playBack()));
@@ -195,19 +197,19 @@ void AudioRecorder::onStateChanged(QMediaRecorder::State state)
     ui->pauseButton->setEnabled(m_audioRecorder->state() != QMediaRecorder::StoppedState);
 }
 
-static QVariant boxValue(const QComboBox *box)
+/*static QVariant boxValue(const QComboBox *box)
 {
     int idx = box->currentIndex();
     if (idx == -1)
         return QVariant();
 
     return box->itemData(idx);
-}
+}*/
 
 void AudioRecorder::toggleRecord()
 {
     if (m_audioRecorder->state() == QMediaRecorder::StoppedState) {
-        m_audioRecorder->setAudioInput(boxValue(ui->audioDeviceBox).toString());
+      /*  m_audioRecorder->setAudioInput(boxValue(ui->audioDeviceBox).toString());
 
         QAudioEncoderSettings settings;
         settings.setCodec(boxValue(ui->audioCodecBox).toString());
@@ -219,9 +221,9 @@ void AudioRecorder::toggleRecord()
                                  QMultimedia::ConstantQualityEncoding :
                                  QMultimedia::ConstantBitRateEncoding);
 
-        QString container = boxValue(ui->containerBox).toString();
+        QString container = boxValue(ui->containerBox).toString();*/
 
-        m_audioRecorder->setEncodingSettings(settings, QVideoEncoderSettings(), container);
+        //m_audioRecorder->setEncodingSettings(settings, QVideoEncoderSettings(), container);
         m_audioRecorder->record();
     }
     else {
