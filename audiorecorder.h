@@ -99,6 +99,7 @@ private:
     bool m_outputLocationSet = false;
 
     QMediaPlayer  * m_playOut;
+    QString m_fileName;
 };
 
 #endif // AUDIORECORDER_H
