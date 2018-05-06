@@ -145,7 +145,7 @@ AudioRecorder::AudioRecorder()
     connect(m_audioRecorder, QOverload<QMediaRecorder::Error>::of(&QAudioRecorder::error), this,
             &AudioRecorder::displayErrorMessage);
 
-    m_fileName = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) +
+    m_fileName = QStandardPaths::writableLocation(QStandardPaths::TempLocation) +
             QDir::separator() + "audiorecorder";
 }
 
